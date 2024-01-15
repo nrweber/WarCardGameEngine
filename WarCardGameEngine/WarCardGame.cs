@@ -18,6 +18,13 @@ public class WarCardGame
         PlayerOneWinsRound,
         PlayerTwoWinsRound,
         WarWaitingForBothPlayers,
+        WarWaitingForPlayerOne,
+        WarWaitingForPlayerTwo,
+        PlayerOneWinsGame,
+        PlayerOneWinsGameByWarRule,
+        PlayerTwoWinsGame,
+        PlayerTwoWinsGameByWarRule,
+        DrawByWarRule,
     };
 
 
@@ -113,6 +120,18 @@ public class WarCardGame
                 playerOnePlayCard();
                 checkRound();
                 break;
+            case GameState.WarWaitingForBothPlayers:
+                playerOnePlayCard();
+                playerOnePlayCard();
+                State = GameState.WarWaitingForPlayerTwo;
+                break;
+            case GameState.WarWaitingForPlayerOne:
+                playerOnePlayCard();
+                playerOnePlayCard();
+                checkRound();
+                break;
+
+
         }
     }
 
@@ -129,6 +148,16 @@ public class WarCardGame
                 State = GameState.WaitingForPlayerOne;
                 break;
             case GameState.WaitingForPlayerTwo:
+                playerTwoPlayCard();
+                checkRound();
+                break;
+            case GameState.WarWaitingForBothPlayers:
+                playerTwoPlayCard();
+                playerTwoPlayCard();
+                State = GameState.WarWaitingForPlayerOne;
+                break;
+            case GameState.WarWaitingForPlayerTwo:
+                playerTwoPlayCard();
                 playerTwoPlayCard();
                 checkRound();
                 break;
@@ -210,11 +239,46 @@ public class WarCardGame
         int p2 = CardValue(_playerTwoPlayedCards.Last());
 
         if(p1 > p2)
-            State = GameState.PlayerOneWinsRound;
+        {
+            if(_playerTwoDeck.CardsInDeck == 0)
+            {
+                State = GameState.PlayerOneWinsGame;
+            }
+            else
+            {
+                State = GameState.PlayerOneWinsRound;
+            }
+        }
         else if(p1 < p2)
-            State = GameState.PlayerTwoWinsRound;
+        {
+            if(_playerOneDeck.CardsInDeck == 0)
+            {
+                State = GameState.PlayerTwoWinsGame;
+            }
+            else
+            {
+                State = GameState.PlayerTwoWinsRound;
+            }
+        }
         else
-            State = GameState.WarWaitingForBothPlayers;
+        {
+            if(_playerOneDeck.CardsInDeck < 2 && _playerTwoDeck.CardsInDeck < 2)
+            {
+                State = GameState.DrawByWarRule;
+            }
+            else if(_playerOneDeck.CardsInDeck >= 2 && _playerTwoDeck.CardsInDeck < 2)
+            {
+                State = GameState.PlayerOneWinsGameByWarRule;
+            }
+            else if(_playerOneDeck.CardsInDeck < 2 && _playerTwoDeck.CardsInDeck >= 2)
+            {
+                State = GameState.PlayerTwoWinsGameByWarRule;
+            }
+            else
+            {
+                State = GameState.WarWaitingForBothPlayers;
+            }
+        }
     }
 
 
