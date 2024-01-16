@@ -82,15 +82,17 @@ public class WarCardGame
     /// </summary>
     public WarCardGame()
     {
-        DealCards(new StandardPokerDeck(StartingStates.Standard52));
+        var deck = new StandardPokerDeck(StartingStates.Standard52);
+        deck.Shuffle();
+        DealCards(deck);
     }
 
 
     /// <summary>
     /// Start a new game of War with the given deck.
-    /// The deck is evenly devided between each player
+    /// The deck is evenly divided between each player
     /// one card at a time. If there is an odd amount 
-    /// of cards, the first player will recieve an extra
+    /// of cards, the first player will receive an extra
     /// card.
     /// </summary>
     /// <exception cref="ArgumentException">
@@ -174,23 +176,43 @@ public class WarCardGame
         switch(State)
         {
             case GameState.PlayerOneWinsRound:
-                foreach(var c in _playerOnePlayedCards)
-                    _playerOneDeck.PushBottom(c);
-                foreach(var c in _playerTwoPlayedCards)
-                    _playerOneDeck.PushBottom(c);
-                _playerOnePlayedCards.Clear();
-                _playerTwoPlayedCards.Clear();
-                State = GameState.WaitingForBothPlayers;
-                break; 
-            case GameState.PlayerTwoWinsRound:
-                foreach(var c in _playerOnePlayedCards)
-                    _playerTwoDeck.PushBottom(c);
-                foreach(var c in _playerTwoPlayedCards)
-                    _playerTwoDeck.PushBottom(c);
-                _playerOnePlayedCards.Clear();
-                _playerTwoPlayedCards.Clear();
-                State = GameState.WaitingForBothPlayers;
-                break; 
+                {
+                    //The cards must not be put back in the decks in a very
+                    // set way. Otherwise, the game will get stuck in a loop.
+                    // Take the Shuffles out and play through a game and you 
+                    // will see the loop.
+                    StandardPokerDeck tempDeck = new(StartingStates.Empty);
+                    foreach(var c in _playerOnePlayedCards)
+                        tempDeck.PushBottom(c);
+                    foreach(var c in _playerTwoPlayedCards)
+                        tempDeck.PushBottom(c);
+
+                    tempDeck.Shuffle();
+
+                    foreach(var c in tempDeck)
+                        _playerOneDeck.PushBottom(c);
+                    _playerOnePlayedCards.Clear();
+                    _playerTwoPlayedCards.Clear();
+                    State = GameState.WaitingForBothPlayers;
+                    break; 
+                }
+            case GameState.PlayerTwoWinsRound: 
+                {
+                    StandardPokerDeck tempDeck = new(StartingStates.Empty);
+                    foreach(var c in _playerOnePlayedCards)
+                        tempDeck.PushBottom(c);
+                    foreach(var c in _playerTwoPlayedCards)
+                        tempDeck.PushBottom(c);
+                   
+                    tempDeck.Shuffle();
+
+                    foreach(var c in tempDeck)
+                        _playerTwoDeck.PushBottom(c);
+                    _playerOnePlayedCards.Clear();
+                    _playerTwoPlayedCards.Clear();
+                    State = GameState.WaitingForBothPlayers;
+                    break; 
+                }
         }
          
     }

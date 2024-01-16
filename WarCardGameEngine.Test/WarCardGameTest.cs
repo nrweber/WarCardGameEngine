@@ -559,7 +559,7 @@ public class UnitTest1
     }
 
     [Fact]
-    public void PlayerOneWinsAfterNormalRoundBecauasePlayerTwoIsOutOfCards()
+    public void PlayerOneWinsAfterNormalRoundBecausePlayerTwoIsOutOfCards()
     {
         StandardPokerDeck testDeck =  new(StartingStates.Empty);
         testDeck.PushBottom(new Card(Suits.Club, Values.Ace));
@@ -574,7 +574,7 @@ public class UnitTest1
     }
     
     [Fact]
-    public void PlayerTwoWinsAfterNormalRoundBecauasePlayerOneIsOutOfCards()
+    public void PlayerTwoWinsAfterNormalRoundBecausePlayerOneIsOutOfCards()
     {
         StandardPokerDeck testDeck =  new(StartingStates.Empty);
         testDeck.PushBottom(new Card(Suits.Spade, Values.Two));
@@ -593,7 +593,7 @@ public class UnitTest1
     }
 
     [Fact]
-    public void PlayerOneWinsAfterWarBecauasePlayerTwoIsOutOfCards()
+    public void PlayerOneWinsAfterWarBecausePlayerTwoIsOutOfCards()
     {
         StandardPokerDeck testDeck =  new(StartingStates.Empty);
         testDeck.PushBottom(new Card(Suits.Club, Values.Ace));
@@ -614,7 +614,7 @@ public class UnitTest1
     }
 
     [Fact]
-    public void PlayerTwoWinsAfterWarBecauasePlayerOneIsOutOfCards()
+    public void PlayerTwoWinsAfterWarBecausePlayerOneIsOutOfCards()
     {
         StandardPokerDeck testDeck =  new(StartingStates.Empty);
         testDeck.PushBottom(new Card(Suits.Spade, Values.Ace));
@@ -635,7 +635,7 @@ public class UnitTest1
     }
 
     [Fact]
-    public void PlayerOneWinsByWarRuleBeforeWarBecauasePlayerTwoIsDownToZeroCards()
+    public void PlayerOneWinsByWarRuleBeforeWarBecausePlayerTwoIsDownToZeroCards()
     {
         StandardPokerDeck testDeck =  new(StartingStates.Empty);
         testDeck.PushBottom(new Card(Suits.Diamond, Values.Ace));
@@ -657,7 +657,7 @@ public class UnitTest1
     }
     
     [Fact]
-    public void PlayerOneWinsByWarRuleBeforeWarBecauasePlayerTwoIsDownToOneCard()
+    public void PlayerOneWinsByWarRuleBeforeWarBecausePlayerTwoIsDownToOneCard()
     {
         StandardPokerDeck testDeck =  new(StartingStates.Empty);
         testDeck.PushBottom(new Card(Suits.Diamond, Values.Ace));
@@ -681,7 +681,7 @@ public class UnitTest1
 
 
     [Fact]
-    public void PlayerTwoWinsByWarRuleBeforeWarBecauasePlayerOneIsDownToZeroCards()
+    public void PlayerTwoWinsByWarRuleBeforeWarBecausePlayerOneIsDownToZeroCards()
     {
         StandardPokerDeck testDeck =  new(StartingStates.Empty);
         testDeck.PushBottom(new Card(Suits.Diamond, Values.Two));
@@ -702,7 +702,7 @@ public class UnitTest1
     }
     
     [Fact]
-    public void PlayerTwoWinsByWarRuleBeforeWarBecauasePlayerOneIsDownToOneCard()
+    public void PlayerTwoWinsByWarRuleBeforeWarBecausePlayerOneIsDownToOneCard()
     {
         StandardPokerDeck testDeck =  new(StartingStates.Empty);
         testDeck.PushBottom(new Card(Suits.Diamond, Values.Two));
@@ -724,7 +724,7 @@ public class UnitTest1
     }
     
     [Fact]
-    public void GameDrwaByWarRuleBeforeWarBecauaseBothPlayersHaveZeroCards()
+    public void GameDrwaByWarRuleBeforeWarBecauseBothPlayersHaveZeroCards()
     {
         StandardPokerDeck testDeck =  new(StartingStates.Empty);
         testDeck.PushBottom(new Card(Suits.Diamond, Values.Ace));
@@ -739,7 +739,7 @@ public class UnitTest1
     }
     
     [Fact]
-    public void GameDrwaByWarRuleBeforeWarBecauaseBothPlayersHaveOneCard()
+    public void GameDrwaByWarRuleBeforeWarBecauseBothPlayersHaveOneCard()
     {
         StandardPokerDeck testDeck =  new(StartingStates.Empty);
         testDeck.PushBottom(new Card(Suits.Diamond, Values.Ace));
