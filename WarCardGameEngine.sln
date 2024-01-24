@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarCardGameEngine", "WarCar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarCardGameEngine.Test", "WarCardGameEngine.Test\WarCardGameEngine.Test.csproj", "{5BAE8BA7-370B-4A6A-A919-7EAF8DF19F93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{FF32D009-7E82-4894-B135-A37ABB59A316}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{5BAE8BA7-370B-4A6A-A919-7EAF8DF19F93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BAE8BA7-370B-4A6A-A919-7EAF8DF19F93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BAE8BA7-370B-4A6A-A919-7EAF8DF19F93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF32D009-7E82-4894-B135-A37ABB59A316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF32D009-7E82-4894-B135-A37ABB59A316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF32D009-7E82-4894-B135-A37ABB59A316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF32D009-7E82-4894-B135-A37ABB59A316}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
