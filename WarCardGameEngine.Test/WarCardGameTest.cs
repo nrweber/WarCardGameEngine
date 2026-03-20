@@ -1,4 +1,5 @@
 using nic_weber.DeckOfCards;
+using System.Reflection;
 
 namespace nic_weber.WarCardGameEngine.Test;
 
@@ -753,5 +754,37 @@ public class UnitTest1
         Assert.Equal(WarCardGame.GameState.DrawByWarRule, game.State);
         Assert.Equal(1, game.PlayerOneDeckSize);
         Assert.Equal(1, game.PlayerTwoDeckSize);
+    }
+
+    [Fact]
+    public void PlayerOneFlipCard_WithEmptyDeck_PlayerTwoWinsGame()
+    {
+        WarCardGame game = new();
+
+        var field = typeof(WarCardGame).GetField("_playerOneDeck", BindingFlags.NonPublic | BindingFlags.Instance)!;
+        var deck = (StandardPokerDeck)field.GetValue(game)!;
+
+        while(deck.CardsInDeck > 0)
+            deck.Pop();
+
+        game.PlayerOneFlipCard();
+
+        Assert.Equal(WarCardGame.GameState.PlayerTwoWinsGame, game.State);
+    }
+
+    [Fact]
+    public void PlayerTwoFlipCard_WithEmptyDeck_PlayerOneWinsGame()
+    {
+        WarCardGame game = new();
+
+        var field = typeof(WarCardGame).GetField("_playerTwoDeck", BindingFlags.NonPublic | BindingFlags.Instance)!;
+        var deck = (StandardPokerDeck)field.GetValue(game)!;
+
+        while(deck.CardsInDeck > 0)
+            deck.Pop();
+
+        game.PlayerTwoFlipCard();
+
+        Assert.Equal(WarCardGame.GameState.PlayerOneWinsGame, game.State);
     }
 }

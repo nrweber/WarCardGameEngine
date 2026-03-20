@@ -112,6 +112,11 @@ public class WarCardGame
     /// </summary>
     public void PlayerOneFlipCard()
     {
+        if(_playerOneDeck.CardsInDeck == 0)
+        {
+            State = GameState.PlayerTwoWinsGame;
+            return;
+        }
         switch(State)
         {
             case GameState.WaitingForBothPlayers:
@@ -143,6 +148,11 @@ public class WarCardGame
     /// </summary>
     public void PlayerTwoFlipCard()
     {
+        if(_playerTwoDeck.CardsInDeck == 0)
+        {
+            State = GameState.PlayerOneWinsGame;
+            return;
+        }
         switch(State)
         {
             case GameState.WaitingForBothPlayers:
